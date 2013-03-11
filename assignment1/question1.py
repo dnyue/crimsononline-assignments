@@ -1,4 +1,7 @@
-a = "~/Desktop/test.txt"
+
+
+
+### JoBo and Nikhil, this weekend was really busy for me so I'm super sorry, but I didn't have enough time to figure out the stuff that I needed to to finish this pset. Anyways, this is 1, most of 3, and I wrote out the way I would solve 2 but couldn't finish it. Sorry Sorry! I'll try to finish this up in the following days.
 
 def common_words(path):
     """question 1a
