@@ -14,7 +14,15 @@ def parse_links_regex(filename):
 
     What does it make the most sense to do here? 
     """
-    pass
+    end_quote = 0
+    while True:
+        tag_link = page.find('"<a href="',end_quote)
+        if tag_link == -1:
+            break
+        start_link = page.find('">',tag_link)
+        start_quote = page.find('"',start_link)
+        end_quote = page.find('"',start_quote + 1)
+
 
 def parse_links_xpath(filename):
     """question 2b
@@ -25,3 +33,12 @@ def parse_links_xpath(filename):
     Which approach is better? (Hint: http://goo.gl/mzl9t)
     """
     pass
+
+def get_next_target(page):
+    start_link = page.find('<a href=')
+    if start_link == -1:
+        return None
+    start_quote = page.find('"',start_link)
+    end_quote = page.find('"',start_quote + 1)
+    url = page[start_quote+1:end_quote]
+    return url, end_quote

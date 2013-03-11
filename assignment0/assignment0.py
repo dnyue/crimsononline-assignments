@@ -193,3 +193,93 @@ def look_away(number):
 
 print('I love the Crimson tech department!')
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### notes for the first tech seminar
+
+
+## every method takes the argument 'self'
+class Animal:
+    magic_number = 42
+    num_legs = 2
+
+    def sound(self):
+        print ''
+
+    def get_num_legs(self):
+        print self.num_legs
+
+
+## Dog is a subclass of Animal
+class Dog(Animal):
+    num_legs = 4
+
+    def sound(self)
+        print 'Woof! Woof!'
+
+    ##this next two lines are assumed if no __init__ is assigned
+    def __init__(self):
+        pass
+
+class Deer(Animal):
+    num_legs = 4
+
+    ## init is an attribute that must be assigned upon creation of an instance
+    ## this is mandatory for the creation of Deer instance
+    def __init__(self,color,height):
+        self.color=color
+        self.height=height
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

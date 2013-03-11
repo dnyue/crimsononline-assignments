@@ -39,14 +39,111 @@ g)  With a minimum of code duplication, modify the Building class so that
     bldg.enter(person, roomnumber). Be careful with how you do this if you
     chose to inherit any classes from Building (which you should have).
 """
-
+building_map = {}
+### a. 
 class Person:
-    def __init__(self):
-        pass
+    room_no = None
+    building = None
+    def __init__(self,first,last,gender):
+        self.rename(first,last)
+        self.surgery(gender)
 
+    def rename(self,new_first,new_last):
+        if not new_first[0].isupper() or not new_last[0].isupper():
+            raise Exception("Invalid name")
+        else:
+            self.first = new_first
+            self.last = new_last
+            self.full = self.first + ' ' + self.last
+    def surgery(self,new_gender):
+        if not new_gender == "M" and not new_gender == "F":
+            raise Exception("Invalid gender")
+        else:
+            self.gender = new_gender
+    def __repr__(self):
+        return self.full
+
+### b. 
+###  A person can only enter a building if the variable, stored with the person, reads person.builing = None.
+### f. I only could think about how to do this using global variables, which is from what i understand a no no when using classes. Also, I was running out of time as i did this, so it may not actually work. The variables are intended to be stored in the dictionary "building_map"
 class Building:
+    def __init__(self,location):
+        self.people = []
+        self.location = locate(location)
+        
+    def locate(self):
+        if building_map[location]:
+            building_map[location].append(self)
+        else:
+            bulding_map[location] = [self]
+        return location    
     def enter(self, person, room_no):
+        if person.building:
+            raise Exception("Already in a building.")
+        if not person in self.people:
+            self.people.append(person)
+        person.room_no = room_no
+        person.building = True
+            
+    def where_is(self, person):
+        if person in self.people:
+            return person.room_no
+        else:
+            print "That person is not in the building"
+
+### c. the iter command makes it possible to iterate over people.
+    def __iter__(self):
+        return iter(self.people)
+           
+
+### d.            
+class OfficeBuilding(Building):
+    def __init__(self,employee_list,location):
+        Building.__init__(self,location))
+        self.list = employee_list
+
+    def enter(self,person,room_no):
+        if person in self.list:
+            Building.enter(self, person, room_no)
+        else:
+            print "Sorry, they are not an employee."
+### e.
+class House(Building):
+    def __init__(self,location):
+        Building.__init__(self,location)
+
+    def enter(self,person):
+        Building.enter(self, person, None)
+        
+    def where_is(self):
         pass
 
+    def at_home(self):
+        return person in self.people
+
+### g. 
+class Building:
+    def __init__(self,location):
+        self.people = []
+        self.location = location
+        building_map[location] = self
+        
+    def enter(self, person, room_no):
+        if person.building:
+            raise Exception("Already in a building.")
+        if not person in self.people:
+            self.people.append(person)
+        person.room_no = room_no
+        person.building = True
+            
     def where_is(self, person):
-        pass
+        if person in self.people:
+            return person.room_no
+        else:
+            print "That person is not in the building"
+
+    def __iter__(self):
+        return iter(self.people)
+
+    def __setitem__(self, room_no, person)
+        enter(self,room_no,person)
